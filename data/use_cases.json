@@ -1,0 +1,90 @@
+{
+  "metiers": [
+    {
+      "id": "rh-charge-mission",
+      "departement": "RH",
+      "intitule": "Chargé de mission RH",
+      "description": "Poste transversal au sein de la Direction des Ressources Humaines. Le chargé de mission RH pilote des projets RH stratégiques (GPEC, QVT, marque employeur, transformation RH) tout en assurant un rôle d'interface entre les équipes opérationnelles et la DRH.",
+      "missions": [
+        "Pilotage de projets RH transversaux (GPEC, onboarding, QVT)",
+        "Rédaction de supports RH : fiches de poste, procédures, guides",
+        "Analyse des données RH et production de tableaux de bord",
+        "Coordination avec les managers et les partenaires sociaux",
+        "Veille réglementaire et sociale",
+        "Accompagnement des équipes dans les changements organisationnels"
+      ],
+      "donnees_traitees": [
+        {
+          "type": "Données personnelles",
+          "exemples": "Noms, prénoms, coordonnées, CV, évaluations annuelles",
+          "niveau": "Très élevé",
+          "cadre_legal": "RGPD — consentement ou intérêt légitime requis"
+        },
+        {
+          "type": "Données sensibles RH",
+          "exemples": "Salaires, absences maladie, situations de handicap, sanctions",
+          "niveau": "Critique",
+          "cadre_legal": "RGPD Art.9 — données sensibles, traitement très encadré"
+        },
+        {
+          "type": "Données organisationnelles",
+          "exemples": "Organigrammes, plans de succession, budgets formation",
+          "niveau": "Élevé",
+          "cadre_legal": "Secret des affaires — diffusion restreinte"
+        }
+      ],
+      "risque_ia": {
+        "niveau": "Élevé",
+        "score_base": 6,
+        "raisons": [
+          "Toute décision automatisée impactant une personne est encadrée par le RGPD Art.22",
+          "Le tri de CV par IA est classé haut risque par l'EU AI Act",
+          "Risque de biais algorithmique sur les données de recrutement",
+          "Les données traitées sont parmi les plus sensibles de l'entreprise"
+        ]
+      },
+      "taches_ia": [
+        {
+          "tache": "Rédaction de fiches de poste",
+          "temps_humain": 45,
+          "temps_ia": 5,
+          "gain_pct": 89,
+          "risque": "Faible",
+          "conseil": "Quick win — déployer immédiatement"
+        },
+        {
+          "tache": "Tri et présélection de CV",
+          "temps_humain": 120,
+          "temps_ia": 15,
+          "gain_pct": 87,
+          "risque": "Élevé",
+          "conseil": "Supervision humaine obligatoire — risque de biais"
+        },
+        {
+          "tache": "Synthèse des entretiens annuels",
+          "temps_humain": 60,
+          "temps_ia": 8,
+          "gain_pct": 87,
+          "risque": "Élevé",
+          "conseil": "Données très sensibles — accès restreint requis"
+        },
+        {
+          "tache": "Production de tableaux de bord RH",
+          "temps_humain": 90,
+          "temps_ia": 10,
+          "gain_pct": 89,
+          "risque": "Moyen",
+          "conseil": "Vérification des chiffres avant diffusion"
+        },
+        {
+          "tache": "Veille réglementaire et sociale",
+          "temps_humain": 30,
+          "temps_ia": 3,
+          "gain_pct": 90,
+          "risque": "Faible",
+          "conseil": "Excellent ROI — gain massif sur la veille quotidienne"
+        }
+      ]
+    }
+  ]
+}

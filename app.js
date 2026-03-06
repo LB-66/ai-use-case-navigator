@@ -1,7 +1,5 @@
 // ══════════════════════════════════════════════════
 // DONNÉES & INSTANCES GRAPHIQUES
-// localStorage : récupère les données sauvegardées
-// Si rien n'existe encore, on part d'un tableau vide
 // ══════════════════════════════════════════════════
 let usages = JSON.parse(localStorage.getItem("ai_usages")) || [];
 let chartDept    = null;
@@ -9,6 +7,26 @@ let chartValRisk = null;
 let chartGauge   = null;
 let chartGain    = null;
 let chartScatter = null;
+
+// ══════════════════════════════════════════════════
+// BASE DE CONNAISSANCES MÉTIERS
+// Chargée au démarrage depuis le fichier JSON
+// ══════════════════════════════════════════════════
+let baseMetiers = [];
+
+fetch("data/use_cases.json")
+  .then(response => response.json())
+  .then(data => {
+    baseMetiers = data.metiers;
+    console.log("Base métiers chargée :", baseMetiers.length, "profil(s)");
+  })
+  .catch(() => {
+    console.log("Base métiers non disponible — scoring standard utilisé");
+  });
+
+function trouverMetier(departement) {
+  return baseMetiers.find(m => m.departement === departement) || null;
+}
 
 // ══════════════════════════════════════════════════
 // ESTIMATION DU TEMPS IA
@@ -39,6 +57,28 @@ function estimerTempsIA(description, departement) {
     }
   }
 
+  // Fallback : on regarde si la fiche métier a une tâche similaire
+  const metier = trouverMetier(departement);
+  if (metier) {
+    const tacheMatch = metier.taches_ia.find(t =>
+      t.tache.toLowerCase().split(" ").some(mot => texte.includes(mot))
+    );
+    if (tacheMatch) {
+      return {
+        temps: tacheMatch.temps_ia,
+        explication: `Basé sur la fiche métier ${metier.intitule} — ${tacheMatch.conseil}`
+      };
+    }
+    // Fallback département via fiche métier
+    const tempsMoyenIA = Math.round(
+      metier.taches_ia.reduce((s, t) => s + t.temps_ia, 0) / metier.taches_ia.length
+    );
+    return {
+      temps: tempsMoyenIA,
+      explication: `Estimation basée sur le profil ${metier.intitule}`
+    };
+  }
+
   const fallback = {
     "RH":        { temps: 3, explication: "Tâche RH standard — estimation ~3 min" },
     "Finance":   { temps: 4, explication: "Tâche financière standard — estimation ~4 min" },
@@ -55,6 +95,8 @@ function estimerTempsIA(description, departement) {
 // SCORING
 // ══════════════════════════════════════════════════
 function calculerScore(data) {
+
+  // Score Valeur
   let valeur = 5;
   if (data.frequence === "quotidien")    valeur += 3;
   if (data.frequence === "hebdomadaire") valeur += 2;
@@ -63,14 +105,24 @@ function calculerScore(data) {
   if (["Finance","Juridique"].includes(data.departement)) valeur += 1;
   valeur = Math.min(valeur, 10);
 
+  // Score Risque
   let risque = 0;
   if (data.donnees.includes("personnelles"))    risque += 4;
   if (data.donnees.includes("financieres"))     risque += 3;
   if (data.donnees.includes("confidentielles")) risque += 3;
   if (data.frequence === "quotidien")           risque += 2;
   if (data.frequence === "hebdomadaire")        risque += 1;
+
+  // Enrichissement via fiche métier
+  // Le score_base de la fiche est un plancher minimum
+  const metier = trouverMetier(data.departement);
+  if (metier) {
+    risque = Math.max(risque, metier.risque_ia.score_base);
+  }
+
   risque = Math.min(risque, 10);
 
+  // Gain de temps
   const tauxMensuel = { quotidien: 22, hebdomadaire: 4, mensuel: 1, ponctuel: 0.5 };
   const gainAbsolu  = Math.max(0, data.tempsHumain - data.tempsIA);
   const gainPct     = data.tempsHumain > 0
@@ -78,6 +130,7 @@ function calculerScore(data) {
     : 0;
   const gainMensuel = Math.round(gainAbsolu * (tauxMensuel[data.frequence] || 1));
 
+  // Verdict
   let verdict, couleur, emoji;
   if (risque >= 7) {
     verdict = "Encadrement urgent requis"; couleur = "rouge"; emoji = "🔴";
@@ -120,47 +173,60 @@ function afficherResultat(usage) {
   document.getElementById("emptyState").style.display    = "none";
   document.getElementById("resultContent").style.display = "block";
 
+  // Conseil gain vs risque
   let conseilGainRisque;
   if (usage.gainPct >= 70 && usage.risque <= 4) {
-    conseilGainRisque = `✅ Gain élevé (${usage.gainPct}%) + risque faible → <strong>déployer en priorité</strong>`;
+    conseilGainRisque = `Gain élevé (${usage.gainPct}%) + risque faible — déployer en priorité`;
   } else if (usage.gainPct >= 70 && usage.risque >= 7) {
-    conseilGainRisque = `⚖️ Gain élevé (${usage.gainPct}%) mais risque fort → <strong>encadrer avant de déployer</strong> — le temps de correction peut dépasser le gain`;
+    conseilGainRisque = `Gain élevé (${usage.gainPct}%) mais risque fort — encadrer avant de déployer`;
   } else if (usage.gainPct < 30 && usage.risque >= 5) {
-    conseilGainRisque = `🚫 Gain faible (${usage.gainPct}%) + risque élevé → <strong>maintenir le processus humain</strong>`;
+    conseilGainRisque = `Gain faible (${usage.gainPct}%) + risque élevé — maintenir le processus humain`;
   } else {
-    conseilGainRisque = `📊 Rapport gain/risque acceptable → surveiller et mesurer dans la durée`;
+    conseilGainRisque = `Rapport gain/risque acceptable — surveiller et mesurer dans la durée`;
   }
 
+  // Recommandations
   let recos;
   if (usage.risque >= 7) {
     recos = [
-      "⚠️ Vérifier la conformité RGPD immédiatement",
-      "📋 Évaluer si l'usage relève du haut risque EU AI Act",
-      "👤 Mettre en place une supervision humaine obligatoire",
-      "📝 Documenter dans le registre de traitements",
+      "Vérifier la conformité RGPD immédiatement",
+      "Évaluer si l'usage relève du haut risque EU AI Act",
+      "Mettre en place une supervision humaine obligatoire",
+      "Documenter dans le registre de traitements",
     ];
   } else if (usage.risque >= 4) {
     recos = [
-      "📋 Documenter l'usage dans le registre RGPD",
-      "🎓 Former les utilisateurs aux bonnes pratiques IA",
-      "📏 Définir des règles d'usage claires par écrit",
+      "Documenter l'usage dans le registre RGPD",
+      "Former les utilisateurs aux bonnes pratiques IA",
+      "Définir des règles d'usage claires par écrit",
     ];
   } else {
     recos = [
-      "✅ Usage à faible risque — poursuivre",
-      "📢 Partager les bonnes pratiques avec d'autres équipes",
-      "🔄 Envisager d'étendre cet usage à d'autres contextes",
+      "Usage à faible risque — poursuivre",
+      "Partager les bonnes pratiques avec d'autres équipes",
+      "Envisager d'étendre cet usage à d'autres contextes",
     ];
   }
 
+  // Contexte métier si disponible
+  const metier = trouverMetier(usage.departement);
+  const contexteMetierHTML = metier ? `
+    <div class="reco-list" style="margin-bottom:12px">
+      <div class="reco-title">Contexte métier — ${metier.intitule}</div>
+      <p>Confidentialité : <strong>${metier.donnees_traitees[0].niveau}</strong></p>
+      <p>Risque IA inhérent : <strong>${metier.risque_ia.niveau}</strong></p>
+      <p style="color:#94A3B8;font-size:0.82rem">${metier.risque_ia.raisons[0]}</p>
+    </div>
+  ` : "";
+
   document.getElementById("resultContent").innerHTML = `
     <div class="result-verdict ${usage.couleur}">
-      <span class="verdict-emoji">${usage.emoji}</span>
       <div class="verdict-text">
         <strong>${usage.verdict}</strong>
         <span>${usage.outil} — ${usage.departement}</span>
       </div>
     </div>
+
     <div class="gain-card">
       <div class="gain-stat">
         <span class="gain-number">${usage.gainAbsolu} min</span>
@@ -168,40 +234,46 @@ function afficherResultat(usage) {
       </div>
       <div class="gain-stat">
         <span class="gain-number">${usage.gainPct}%</span>
-        <span class="gain-label">Réduction temps</span>
+        <span class="gain-label">Réduction</span>
       </div>
       <div class="gain-stat">
         <span class="gain-number">${usage.gainMensuel} min</span>
         <span class="gain-label">Gain / mois</span>
       </div>
     </div>
+
     <div class="reco-list" style="margin-bottom:12px">
-      <div class="reco-title">🤖 Estimation IA</div>
-      <p>✨ Temps estimé avec l'IA : <strong>${usage.tempsIA} min</strong></p>
+      <div class="reco-title">Estimation IA</div>
+      <p>Temps estimé avec l'IA : <strong>${usage.tempsIA} min</strong></p>
       <p style="color:#94A3B8;font-size:0.82rem">${usage.explicationIA}</p>
     </div>
+
+    ${contexteMetierHTML}
+
     <div class="reco-list" style="margin-bottom:12px">
-      <div class="reco-title">⚖️ Analyse gain vs risque</div>
+      <div class="reco-title">Analyse gain vs risque</div>
       <p>${conseilGainRisque}</p>
     </div>
+
     <div class="scores-row">
       <div class="score-box valeur">
-        <div class="score-label">💎 Valeur créée</div>
+        <div class="score-label">Valeur créée</div>
         <div class="score-number">${usage.valeur}<small style="font-size:0.9rem;color:#94A3B8">/10</small></div>
         <div class="score-bar-bg">
           <div class="score-bar-fill" style="width:${usage.valeur * 10}%"></div>
         </div>
       </div>
       <div class="score-box risque">
-        <div class="score-label">⚠️ Niveau de risque</div>
+        <div class="score-label">Niveau de risque</div>
         <div class="score-number">${usage.risque}<small style="font-size:0.9rem;color:#94A3B8">/10</small></div>
         <div class="score-bar-bg">
           <div class="score-bar-fill" style="width:${usage.risque * 10}%"></div>
         </div>
       </div>
     </div>
+
     <div class="reco-list">
-      <div class="reco-title">📋 Recommandations</div>
+      <div class="reco-title">Recommandations</div>
       ${recos.map(r => `<p>${r}</p>`).join("")}
     </div>
   `;
@@ -241,7 +313,7 @@ function mettreAJourTableau() {
       <td style="color:#059669;font-weight:700">${usage.gainPct}%</td>
       <td><strong style="color:#059669">${usage.valeur}/10</strong></td>
       <td><strong style="color:#DC2626">${usage.risque}/10</strong></td>
-      <td><span class="badge ${usage.couleur}">${usage.emoji} ${usage.verdict}</span></td>
+      <td><span class="badge ${usage.couleur}">${usage.verdict}</span></td>
     `;
     tbody.appendChild(tr);
   });
@@ -295,9 +367,9 @@ function mettreAJourGraphiques() {
   const risqueMoyen   = usages.reduce((s, u) => s + u.risque, 0) / usages.length;
   const risqueArrondi = Math.round(risqueMoyen * 10) / 10;
   const couleurGauge  = risqueMoyen >= 7 ? "#DC2626" : risqueMoyen >= 4 ? "#D97706" : "#059669";
-  const labelGauge    = risqueMoyen >= 7 ? "🔴 Risque élevé — action urgente"
-    : risqueMoyen >= 4 ? "🟠 Risque modéré — surveillance recommandée"
-    : "🟢 Risque faible — bonne maîtrise";
+  const labelGauge    = risqueMoyen >= 7 ? "Risque élevé — action urgente"
+    : risqueMoyen >= 4 ? "Risque modéré — surveillance recommandée"
+    : "Risque faible — bonne maîtrise";
 
   if (chartGauge) chartGauge.destroy();
   chartGauge = new Chart(document.getElementById("chartGauge"), {
@@ -376,7 +448,7 @@ function mettreAJourGraphiques() {
       },
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label(ctx) { const p = scatterData[ctx.dataIndex]; return [`📌 ${p.label}`, `Gain : ${p.x}%`, `Risque : ${p.y}/10`]; } } }
+        tooltip: { callbacks: { label(ctx) { const p = scatterData[ctx.dataIndex]; return [`${p.label}`, `Gain : ${p.x}%`, `Risque : ${p.y}/10`]; } } }
       }
     },
     plugins: [{
@@ -458,7 +530,6 @@ document.getElementById("usageForm").addEventListener("submit", function(e) {
 
 // ══════════════════════════════════════════════════
 // CHARGEMENT INITIAL
-// Affiche les données sauvegardées au démarrage
 // ══════════════════════════════════════════════════
 if (usages.length > 0) {
   mettreAJourTableau();
