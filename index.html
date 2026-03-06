@@ -11,24 +11,21 @@
   <header>
     <div class="header-inner">
       <div class="header-brand">
-        <span>🗺️</span>
-        <div>
-          <h1>AI Use Case Navigator</h1>
-          <p class="header-sub">Cartographiez · Évaluez · Gouvernez</p>
-        </div>
+        <h1>AI Use Case Navigator</h1>
+        <p class="header-sub">Cartographiez · Évaluez · Gouvernez</p>
       </div>
       <div class="header-stats">
         <div class="stat-chip">
           <span id="statTotal">0</span>
-          <label>usages</label>
+          <label>Usages</label>
         </div>
         <div class="stat-chip">
           <span id="statRisque">0</span>
-          <label>à risque</label>
+          <label>À risque</label>
         </div>
         <div class="stat-chip">
           <span id="statMoyenne">—</span>
-          <label>score moyen</label>
+          <label>Score moyen</label>
         </div>
       </div>
     </div>
@@ -39,8 +36,7 @@
 
       <section class="card">
         <div class="card-header">
-          <span>📋</span>
-          <h2>Déclarer un usage IA</h2>
+          <h2>Déclarer un usage</h2>
         </div>
         <form id="usageForm">
 
@@ -48,14 +44,14 @@
             <label for="departement">Département</label>
             <select id="departement" required>
               <option value="">Sélectionner…</option>
-              <option value="RH">👥 Ressources Humaines</option>
-              <option value="Finance">💰 Finance & Comptabilité</option>
-              <option value="Marketing">📣 Marketing & Communication</option>
-              <option value="Juridique">⚖️ Juridique & Compliance</option>
-              <option value="IT">💻 IT & Systèmes d'information</option>
-              <option value="Direction">🏛️ Direction Générale</option>
-              <option value="Operations">🔧 Opérations & Supply Chain</option>
-              <option value="Autre">📌 Autre</option>
+              <option value="RH">Ressources Humaines</option>
+              <option value="Finance">Finance & Comptabilité</option>
+              <option value="Marketing">Marketing & Communication</option>
+              <option value="Juridique">Juridique & Compliance</option>
+              <option value="IT">IT & Systèmes d'information</option>
+              <option value="Direction">Direction Générale</option>
+              <option value="Operations">Opérations & Supply Chain</option>
+              <option value="Autre">Autre</option>
             </select>
           </div>
 
@@ -76,10 +72,10 @@
             <label for="frequence">Fréquence d'utilisation</label>
             <select id="frequence" required>
               <option value="">Sélectionner…</option>
-              <option value="quotidien">📅 Quotidien</option>
-              <option value="hebdomadaire">📆 Hebdomadaire</option>
-              <option value="mensuel">🗓️ Mensuel</option>
-              <option value="ponctuel">🔀 Ponctuel</option>
+              <option value="quotidien">Quotidien</option>
+              <option value="hebdomadaire">Hebdomadaire</option>
+              <option value="mensuel">Mensuel</option>
+              <option value="ponctuel">Ponctuel</option>
             </select>
           </div>
 
@@ -104,22 +100,18 @@
               </label>
             </div>
           </div>
-          <div class="form-row">
 
-            <div class="form-group">
-              <label for="tempsHumain">
-                ⏱️ Temps humain actuel
-                <span class="label-hint">(minutes/tâche)</span>
-              </label>
-              <input type="number" id="tempsHumain"
-                placeholder="Ex : 15" min="1" required>
-            </div>
-
-            
-
+          <div class="form-group">
+            <label for="tempsHumain">
+              Temps humain actuel
+              <span class="label-hint">(minutes / tâche)</span>
+            </label>
+            <input type="number" id="tempsHumain"
+              placeholder="Ex : 15" min="1" required>
           </div>
+
           <button type="submit" class="btn-submit">
-            Évaluer cet usage →
+            Évaluer cet usage
           </button>
 
         </form>
@@ -127,12 +119,10 @@
 
       <section class="card">
         <div class="card-header">
-          <span>⚡</span>
           <h2>Résultat de l'évaluation</h2>
         </div>
         <div id="emptyState" class="empty-state">
-          <p>📊</p>
-          <p>Remplissez le formulaire et cliquez sur <strong>Évaluer</strong>.</p>
+          <p>Remplissez le formulaire et cliquez sur <strong>Évaluer</strong> pour voir l'analyse.</p>
         </div>
         <div id="resultContent" style="display:none"></div>
       </section>
@@ -141,13 +131,19 @@
 
     <section class="card">
       <div class="card-header">
-        <span>📊</span>
         <h2>Tableau de bord — <span id="usageCount">0</span> usage(s)</h2>
       </div>
+
+      <div id="exportButtons" style="display:none" class="export-bar">
+        <button onclick="toutEffacer()" class="btn-export btn-danger">
+          Tout effacer
+        </button>
+      </div>
+
       <div id="tableEmpty" class="empty-state">
-        <p>🗂️</p>
         <p>Vos usages déclarés apparaîtront ici.</p>
       </div>
+
       <div id="tableWrapper" style="display:none">
         <table>
           <thead>
@@ -156,6 +152,7 @@
               <th>Outil</th>
               <th>Usage</th>
               <th>Fréquence</th>
+              <th>Gain</th>
               <th>Valeur</th>
               <th>Risque</th>
               <th>Statut</th>
@@ -166,60 +163,59 @@
       </div>
     </section>
 
-  </main>
-<!-- Graphiques -->
-  <section class="card" id="chartsSection" style="display:none">
-    <div class="card-header">
-      <span>📈</span>
-      <h2>Visualisations</h2>
-    </div>
-    <div class="charts-grid">
-
-      <div class="chart-box">
-        <h3>Répartition par département</h3>
-        <canvas id="chartDept"></canvas>
+    <section class="card" id="chartsSection" style="display:none">
+      <div class="card-header">
+        <h2>Visualisations</h2>
       </div>
+      <div class="charts-grid">
 
-      <div class="chart-box">
-        <h3>Valeur vs Risque par usage</h3>
-        <canvas id="chartValRisk"></canvas>
-      </div>
+        <div class="chart-box">
+          <h3>Répartition par département</h3>
+          <canvas id="chartDept"></canvas>
+        </div>
 
-      <div class="chart-box chart-box--full">
-        <h3>Risque global de l'organisation</h3>
-        <canvas id="chartGauge"></canvas>
-        <p id="gaugeLabel" class="gauge-label"></p>
-      </div>
+        <div class="chart-box">
+          <h3>Valeur vs Risque par usage</h3>
+          <canvas id="chartValRisk"></canvas>
+        </div>
 
-      <div class="chart-box chart-box--full">
-        <h3>⏱️ Gain de temps par usage (minutes/tâche)</h3>
-        <canvas id="chartGain"></canvas>
-      </div>
+        <div class="chart-box chart-box--full">
+          <h3>Risque global de l'organisation</h3>
+          <canvas id="chartGauge"></canvas>
+          <p id="gaugeLabel" class="gauge-label"></p>
+        </div>
 
-      <div class="chart-box chart-box--scatter">
-        <h3>🎯 Matrice Gain vs Risque — aide à la décision</h3>
-        <canvas id="chartScatter"></canvas>
-        <div class="scatter-legend">
-          <div class="scatter-legend-item">
-            <div class="scatter-dot" style="background:#059669"></div>
-            Déployer en priorité (fort gain, faible risque)
-          </div>
-          <div class="scatter-legend-item">
-            <div class="scatter-dot" style="background:#D97706"></div>
-            À encadrer (fort gain, risque modéré)
-          </div>
-          <div class="scatter-legend-item">
-            <div class="scatter-dot" style="background:#DC2626"></div>
-            À éviter (faible gain, fort risque)
+        <div class="chart-box chart-box--full">
+          <h3>Gain de temps par usage — minutes par tâche</h3>
+          <canvas id="chartGain"></canvas>
+        </div>
+
+        <div class="chart-box chart-box--scatter">
+          <h3>Matrice Gain vs Risque — aide à la décision</h3>
+          <canvas id="chartScatter"></canvas>
+          <div class="scatter-legend">
+            <div class="scatter-legend-item">
+              <div class="scatter-dot" style="background:#059669"></div>
+              Déployer en priorité
+            </div>
+            <div class="scatter-legend-item">
+              <div class="scatter-dot" style="background:#D97706"></div>
+              À encadrer
+            </div>
+            <div class="scatter-legend-item">
+              <div class="scatter-dot" style="background:#DC2626"></div>
+              À éviter
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Chart.js chargé en local pour éviter le blocage Edge -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="app.js"></script>
-  <script src="app.js"></script>
+
 </body>
 </html>
