@@ -101,15 +101,4 @@ cd ai-use-case-navigator
 # Ouvrir index.html avec Live Server dans VS Code
 ```
 
----
 
-## Contexte
-
-Projet développé dans le cadre de la formation **Référent IA** — emlyon business school.
-
-Objectif : démontrer concrètement les compétences de cartographie,
-gouvernance et pilotage des usages IA en entreprise.
-
----
-
-*Projet open source — contributions bienvenues*
