@@ -92,6 +92,17 @@ C'est le reflet du risque inhérent au métier, indépendamment de la tâche.
 ---
 
 
+---
+
+## Installation locale
+```bash
+git clone https://github.com/LB-66/ai-use-case-navigator.git
+cd ai-use-case-navigator
+# Ouvrir index.html avec Live Server dans VS Code
+```
+
+---
+
 ## Contexte
 
 Projet développé dans le cadre de la formation **Référent IA** — emlyon business school.
