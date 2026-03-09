@@ -1,0 +1,348 @@
+{
+  "metiers": [
+
+    {
+      "id": "gestionnaire-rh",
+      "nom": "Gestionnaire RH / Paie",
+      "famille": "RH",
+      "couleur": "#059669",
+      "x": 0.45, "y": -0.65,
+      "scoreIA": 88, "risque": "Faible", "maturite": 2,
+      "description": "Calcul de la paie, gestion des contrats, déclarations sociales et administration du personnel.",
+      "taches": [
+        { "nom": "Saisie et calcul de la paie", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["Silae", "Sage Paie", "Copilot"], "detail": "Détection d'anomalies, calcul automatique des variables, génération des bulletins.", "reglementation": "RGPD — données de paie = données personnelles sensibles" },
+        { "nom": "Déclarations sociales (DSN)", "statut": "automatisable", "gainTemps": 80, "risque": "Faible", "outils": ["Silae", "Net-Entreprises"], "detail": "Génération et envoi automatique de la DSN mensuelle.", "reglementation": "Obligation légale — délais stricts" },
+        { "nom": "Réponses aux questions RH (chatbot)", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Chatbot interne"], "detail": "Chatbot RH interne pour répondre aux questions récurrentes (congés, mutuelle, etc.).", "reglementation": "Supervision humaine recommandée" },
+        { "nom": "Génération de contrats et avenants", "statut": "automatisable", "gainTemps": 70, "risque": "Moyen", "outils": ["ChatGPT", "Juro", "Copilot"], "detail": "Génération automatique à partir de modèles. Validation humaine obligatoire.", "reglementation": "Droit du travail — relecture experte requise" },
+        { "nom": "Suivi des absences et congés", "statut": "en-cours", "gainTemps": 65, "risque": "Faible", "outils": ["Lucca", "Workday", "Copilot"], "detail": "Automatisation des alertes, calcul des soldes, intégration avec la paie.", "reglementation": "Convention collective applicable" },
+        { "nom": "Tableaux de bord RH", "statut": "en-cours", "gainTemps": 70, "risque": "Faible", "outils": ["PowerBI", "Copilot", "ChatGPT"], "detail": "Génération automatique de reportings RH mensuels.", "reglementation": "Données agrégées — anonymisation recommandée" },
+        { "nom": "Entretiens annuels d'évaluation", "statut": "non-automatise", "gainTemps": 30, "risque": "Élevé", "outils": [], "detail": "Interaction humaine fondamentale. L'IA peut aider à la synthèse post-entretien uniquement.", "reglementation": "Données d'évaluation = données sensibles (RGPD)" },
+        { "nom": "Gestion des conflits et médiation", "statut": "non-automatise", "gainTemps": 10, "risque": "Très élevé", "outils": [], "detail": "Compétence purement humaine. Empathie et discernement irremplaçables.", "reglementation": "Responsabilité managériale et légale" }
+      ]
+    },
+
+    {
+      "id": "charge-recrutement",
+      "nom": "Chargé(e) de Recrutement",
+      "famille": "RH",
+      "couleur": "#059669",
+      "x": -0.05, "y": 0.3,
+      "scoreIA": 78, "risque": "Moyen", "maturite": 2,
+      "description": "Sourcing, sélection des candidats, conduite des entretiens et gestion de l'expérience candidat.",
+      "taches": [
+        { "nom": "Rédaction d'offres d'emploi", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Textio"], "detail": "GPT génère une offre structurée en 2 min à partir d'une fiche de poste.", "reglementation": "Vérifier l'absence de formulations discriminatoires" },
+        { "nom": "Tri et présélection de CV", "statut": "automatisable", "gainTemps": 80, "risque": "Très élevé", "outils": ["Flatchr", "Workday", "Recruitee"], "detail": "ATS enrichis IA trient automatiquement. ATTENTION : haut risque EU AI Act 2026.", "reglementation": "EU AI Act — haut risque recrutement · RGPD Art.22" },
+        { "nom": "Emails candidats automatisés", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "HubSpot"], "detail": "Templates IA pour chaque étape (accusé réception, refus, relance).", "reglementation": "RGPD — gestion des données de candidature" },
+        { "nom": "Sourcing LinkedIn et CVthèques", "statut": "en-cours", "gainTemps": 60, "risque": "Moyen", "outils": ["Waalaxy", "Heyreach", "LinkedIn Recruiter AI"], "detail": "Boolean search assistée, suggestions de profils similaires.", "reglementation": "Conditions d'utilisation LinkedIn · RGPD" },
+        { "nom": "Synthèse et compte-rendu d'entretiens", "statut": "en-cours", "gainTemps": 70, "risque": "Élevé", "outils": ["Otter.ai", "Notion AI", "Copilot"], "detail": "Transcription + synthèse automatique. Consentement candidat obligatoire.", "reglementation": "RGPD — enregistrement = consentement explicite requis" },
+        { "nom": "Conduite des entretiens", "statut": "non-automatise", "gainTemps": 20, "risque": "Très élevé", "outils": [], "detail": "L'évaluation humaine reste centrale. Les outils d'analyse vidéo IA sont très controversés.", "reglementation": "EU AI Act haut risque · Risques de discrimination" },
+        { "nom": "Intégration et onboarding manager", "statut": "non-automatise", "gainTemps": 25, "risque": "Élevé", "outils": [], "detail": "Accompagnement humain essentiel pour la prise de poste et l'intégration culturelle.", "reglementation": "Responsabilité RH et managériale" }
+      ]
+    },
+
+    {
+      "id": "drh",
+      "nom": "DRH / Directeur RH",
+      "famille": "RH",
+      "couleur": "#059669",
+      "x": -0.72, "y": 0.82,
+      "scoreIA": 52, "risque": "Moyen", "maturite": 2,
+      "description": "Stratégie RH, relations sociales, transformation organisationnelle et dialogue social.",
+      "taches": [
+        { "nom": "Veille sociale et réglementaire", "statut": "automatisable", "gainTemps": 70, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Editions Tissot AI"], "detail": "Surveillance automatique des évolutions du droit du travail.", "reglementation": "Validation experte obligatoire" },
+        { "nom": "Synthèse du bilan social", "statut": "automatisable", "gainTemps": 65, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "PowerBI"], "detail": "Génération automatique du narratif du bilan social à partir des données RH.", "reglementation": "Obligation légale annuelle" },
+        { "nom": "Reporting CODIR / CA", "statut": "en-cours", "gainTemps": 65, "risque": "Faible", "outils": ["PowerBI", "Copilot", "ChatGPT"], "detail": "Génération des slides et narratifs pour les présentations exécutives.", "reglementation": "Confidentialité stratégique" },
+        { "nom": "Aide à la rédaction d'accords", "statut": "en-cours", "gainTemps": 55, "risque": "Élevé", "outils": ["ChatGPT", "Copilot"], "detail": "L'IA propose des formulations. La négociation et la signature restent humaines.", "reglementation": "Code du travail — accords d'entreprise" },
+        { "nom": "Stratégie RH et transformation", "statut": "non-automatise", "gainTemps": 20, "risque": "Moyen", "outils": [], "detail": "Vision stratégique = leadership et connaissance de l'organisation irremplaçables.", "reglementation": "Responsabilité de direction" },
+        { "nom": "Dialogue social et négociation IRP", "statut": "non-automatise", "gainTemps": 10, "risque": "Très élevé", "outils": [], "detail": "Relations sociales = compétence humaine fondamentale.", "reglementation": "Code du travail — dialogue social réglementé" }
+      ]
+    },
+
+    {
+      "id": "comptable",
+      "nom": "Comptable / Contrôleur",
+      "famille": "Finance",
+      "couleur": "#1D4ED8",
+      "x": 0.55, "y": -0.72,
+      "scoreIA": 90, "risque": "Faible", "maturite": 3,
+      "description": "Saisie comptable, clôtures, réconciliations bancaires et reporting financier périodique.",
+      "taches": [
+        { "nom": "Saisie automatique des factures (OCR)", "statut": "automatisable", "gainTemps": 90, "risque": "Faible", "outils": ["Pennylane", "Yooz", "Sage"], "detail": "OCR + IA : lecture et saisie automatique avec taux de précision > 95%.", "reglementation": "Obligation de conservation des justificatifs" },
+        { "nom": "Réconciliation bancaire", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["Sage", "Cegid", "Copilot"], "detail": "Rapprochement automatique des relevés bancaires avec la comptabilité.", "reglementation": "Normes comptables françaises (PCG)" },
+        { "nom": "Détection d'anomalies comptables", "statut": "automatisable", "gainTemps": 80, "risque": "Faible", "outils": ["Pennylane AI", "ChatGPT", "Copilot"], "detail": "L'IA détecte les écarts, doublons et erreurs de saisie automatiquement.", "reglementation": "Audit interne — traçabilité obligatoire" },
+        { "nom": "Génération des reportings de clôture", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["Copilot", "PowerBI", "Cegid"], "detail": "Production automatique des états financiers périodiques.", "reglementation": "Normes IFRS / PCG selon l'entreprise" },
+        { "nom": "Préparation des déclarations TVA", "statut": "en-cours", "gainTemps": 65, "risque": "Moyen", "outils": ["Pennylane", "Sage", "Copilot"], "detail": "Pré-remplissage automatique des déclarations. Validation experte obligatoire.", "reglementation": "CGI — responsabilité fiscale de l'entreprise" },
+        { "nom": "Audit et révision des comptes annuels", "statut": "non-automatise", "gainTemps": 30, "risque": "Élevé", "outils": [], "detail": "Jugement professionnel irremplaçable. L'IA peut assister la recherche documentaire.", "reglementation": "Code de commerce — responsabilité du commissaire aux comptes" },
+        { "nom": "Conseil fiscal et optimisation", "statut": "non-automatise", "gainTemps": 20, "risque": "Très élevé", "outils": [], "detail": "Expertise fiscale = responsabilité professionnelle engagée.", "reglementation": "CGI + jurisprudence — responsabilité pénale possible" }
+      ]
+    },
+
+    {
+      "id": "controleur-gestion",
+      "nom": "Contrôleur de Gestion",
+      "famille": "Finance",
+      "couleur": "#1D4ED8",
+      "x": -0.1, "y": -0.1,
+      "scoreIA": 74, "risque": "Faible", "maturite": 2,
+      "description": "Pilotage budgétaire, forecasts, analyse des écarts et reporting de la performance financière.",
+      "taches": [
+        { "nom": "Génération des reportings mensuels", "statut": "automatisable", "gainTemps": 78, "risque": "Faible", "outils": ["Excel+Copilot", "PowerBI", "Copilot"], "detail": "Automatisation complète des tableaux de bord mensuels à partir des données ERP.", "reglementation": "Confidentialité des données financières" },
+        { "nom": "Analyse des écarts budget / réel", "statut": "automatisable", "gainTemps": 72, "risque": "Faible", "outils": ["Copilot", "PowerBI", "ChatGPT"], "detail": "L'IA identifie et commente automatiquement les écarts significatifs.", "reglementation": "Normes de contrôle interne" },
+        { "nom": "Forecasts et re-prévisions", "statut": "en-cours", "gainTemps": 65, "risque": "Moyen", "outils": ["Anaplan", "Copilot", "Excel AI"], "detail": "L'IA propose des projections sur la base de l'historique. Validation managériale.", "reglementation": "Responsabilité des prévisions financières" },
+        { "nom": "Narratifs de performance (commentaires)", "statut": "en-cours", "gainTemps": 70, "risque": "Faible", "outils": ["ChatGPT", "Copilot"], "detail": "Génération automatique des commentaires d'analyse pour les CODIR.", "reglementation": "Vérification de la cohérence avec les chiffres" },
+        { "nom": "Définition des objectifs budgétaires", "statut": "non-automatise", "gainTemps": 20, "risque": "Moyen", "outils": [], "detail": "Arbitrage stratégique entre les directions = décision humaine.", "reglementation": "Gouvernance financière de l'entreprise" }
+      ]
+    },
+
+    {
+      "id": "charge-marketing",
+      "nom": "Chargé(e) Marketing",
+      "famille": "Marketing",
+      "couleur": "#D97706",
+      "x": 0.05, "y": 0.5,
+      "scoreIA": 85, "risque": "Faible", "maturite": 3,
+      "description": "Stratégie de contenu, campagnes marketing, SEO, acquisition et analyse de performance.",
+      "taches": [
+        { "nom": "Rédaction de contenus (articles, posts)", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["ChatGPT", "Jasper", "Copilot"], "detail": "Génération de drafts, reformulation, adaptation de ton selon le canal.", "reglementation": "Droits d'auteur — vérifier l'originalité du contenu" },
+        { "nom": "Optimisation SEO", "statut": "automatisable", "gainTemps": 80, "risque": "Faible", "outils": ["Semrush AI", "Surfer SEO", "ChatGPT"], "detail": "Analyse sémantique, suggestions de mots-clés, optimisation automatique des balises.", "reglementation": "Pas de contrainte réglementaire spécifique" },
+        { "nom": "Reporting et analyse de campagnes", "statut": "automatisable", "gainTemps": 78, "risque": "Faible", "outils": ["HubSpot AI", "GA4", "Copilot"], "detail": "Narratifs automatiques des performances, alertes sur les anomalies.", "reglementation": "RGPD — cookies et tracking" },
+        { "nom": "Personnalisation des emailings", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["HubSpot AI", "Brevo", "Klaviyo AI"], "detail": "Segmentation intelligente, personnalisation du contenu par profil.", "reglementation": "RGPD · LCEN — opt-in obligatoire" },
+        { "nom": "Création de visuels IA", "statut": "en-cours", "gainTemps": 70, "risque": "Moyen", "outils": ["Canva AI", "Midjourney", "Adobe Firefly"], "detail": "Génération d'images et de bannières. Attention aux droits des images générées.", "reglementation": "Droits d'auteur des images IA — cadre juridique incertain" },
+        { "nom": "Stratégie de marque", "statut": "non-automatise", "gainTemps": 25, "risque": "Moyen", "outils": [], "detail": "Vision de marque = jugement humain et connaissance du marché irremplaçables.", "reglementation": "Propriété intellectuelle de la marque" },
+        { "nom": "Gestion de crise de communication", "statut": "non-automatise", "gainTemps": 15, "risque": "Très élevé", "outils": [], "detail": "Réactivité et jugement humain essentiels en situation de crise.", "reglementation": "Responsabilité de l'entreprise engagée" }
+      ]
+    },
+
+    {
+      "id": "commercial",
+      "nom": "Commercial / Account Exec",
+      "famille": "Commercial",
+      "couleur": "#DC2626",
+      "x": 0.25, "y": 0.45,
+      "scoreIA": 76, "risque": "Faible", "maturite": 2,
+      "description": "Prospection, qualification des leads, négociation et gestion du portefeuille clients.",
+      "taches": [
+        { "nom": "Emails de prospection personnalisés", "statut": "automatisable", "gainTemps": 82, "risque": "Faible", "outils": ["ChatGPT", "Outreach", "Lemlist"], "detail": "Personnalisation à grande échelle des séquences de prospection.", "reglementation": "RGPD — opt-out obligatoire sur les emails B2B" },
+        { "nom": "Scoring et qualification des leads", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["HubSpot AI", "Salesforce Einstein", "Clearbit"], "detail": "L'IA priorise les leads selon leur probabilité de conversion.", "reglementation": "RGPD — traçabilité des données prospects" },
+        { "nom": "Compte-rendu de réunion automatisé", "statut": "automatisable", "gainTemps": 70, "risque": "Faible", "outils": ["Otter.ai", "Fireflies", "Copilot"], "detail": "Transcription automatique + extraction des actions à mener.", "reglementation": "Consentement des participants à l'enregistrement" },
+        { "nom": "Préparation des rendez-vous clients", "statut": "en-cours", "gainTemps": 65, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Perplexity"], "detail": "Synthèse automatique du profil client, des actualités et des enjeux.", "reglementation": "Données publiques uniquement" },
+        { "nom": "Prévisions commerciales (forecast)", "statut": "en-cours", "gainTemps": 60, "risque": "Moyen", "outils": ["Salesforce Einstein", "Copilot", "Monday AI"], "detail": "L'IA prédit le pipe sur la base de l'historique. Jugement humain maintenu.", "reglementation": "Confidentialité des données clients" },
+        { "nom": "Négociation et closing", "statut": "non-automatise", "gainTemps": 15, "risque": "Moyen", "outils": [], "detail": "La vente est un art relationnel. L'IA analyse après, ne négocie pas.", "reglementation": "Responsabilité contractuelle engagée" },
+        { "nom": "Relation client stratégique long terme", "statut": "non-automatise", "gainTemps": 10, "risque": "Moyen", "outils": [], "detail": "Confiance et fidélité = dimension humaine irremplaçable.", "reglementation": "Confidentialité des informations clients" }
+      ]
+    },
+
+    {
+      "id": "adv",
+      "nom": "ADV / Administration des Ventes",
+      "famille": "Commercial",
+      "couleur": "#DC2626",
+      "x": 0.52, "y": -0.6,
+      "scoreIA": 84, "risque": "Faible", "maturite": 2,
+      "description": "Traitement des commandes, facturation clients, suivi des livraisons et gestion des litiges.",
+      "taches": [
+        { "nom": "Saisie et traitement des commandes", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["SAP", "Salesforce", "Copilot"], "detail": "Saisie automatique depuis les emails et EDI clients, contrôle des stocks.", "reglementation": "Conditions générales de vente" },
+        { "nom": "Génération et envoi des factures", "statut": "automatisable", "gainTemps": 82, "risque": "Faible", "outils": ["Yooz", "Pennylane", "Sage"], "detail": "Facturation automatique déclenchée à l'expédition ou à la livraison.", "reglementation": "Obligations légales de facturation électronique 2026" },
+        { "nom": "Suivi et relance des paiements", "statut": "automatisable", "gainTemps": 78, "risque": "Faible", "outils": ["Chorus Pro", "Copilot", "ChatGPT"], "detail": "Relances automatiques par email selon le calendrier d'échéance.", "reglementation": "Délais de paiement — Loi LME" },
+        { "nom": "Réponses clients standards", "statut": "automatisable", "gainTemps": 72, "risque": "Faible", "outils": ["ChatGPT", "Zendesk AI", "Copilot"], "detail": "Réponses automatiques aux demandes récurrentes (suivi commande, délais).", "reglementation": "RGPD — données clients" },
+        { "nom": "Classification et traitement des litiges", "statut": "en-cours", "gainTemps": 65, "risque": "Moyen", "outils": ["ChatGPT", "Copilot", "Zendesk AI"], "detail": "L'IA classe et prépare la réponse aux litiges simples. Validation humaine.", "reglementation": "Droit commercial — responsabilité contractuelle" },
+        { "nom": "Négociation litiges complexes", "statut": "non-automatise", "gainTemps": 20, "risque": "Élevé", "outils": [], "detail": "Litige commercial sensible = relation client et responsabilité engagée.", "reglementation": "Code civil — responsabilité contractuelle" }
+      ]
+    },
+
+    {
+      "id": "developpeur",
+      "nom": "Développeur / Ingénieur IT",
+      "famille": "IT",
+      "couleur": "#0891B2",
+      "x": -0.2, "y": 0.15,
+      "scoreIA": 88, "risque": "Moyen", "maturite": 4,
+      "description": "Développement logiciel, revue de code, tests automatisés et documentation technique.",
+      "taches": [
+        { "nom": "Génération et autocomplétion de code", "statut": "automatisable", "gainTemps": 50, "risque": "Moyen", "outils": ["GitHub Copilot", "Cursor", "Claude"], "detail": "Copilot génère 30-50% du code selon les études. Revue humaine indispensable.", "reglementation": "Propriété intellectuelle du code généré — débat ouvert" },
+        { "nom": "Génération de tests unitaires", "statut": "automatisable", "gainTemps": 80, "risque": "Moyen", "outils": ["Copilot", "CodiumAI", "ChatGPT"], "detail": "L'IA génère automatiquement les cas de test à partir du code source.", "reglementation": "Responsabilité du développeur sur la qualité" },
+        { "nom": "Documentation technique", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["Copilot", "ChatGPT", "Mintlify"], "detail": "Génération automatique de docstrings, README et guides techniques.", "reglementation": "Pas de contrainte spécifique" },
+        { "nom": "Revue de code (code review)", "statut": "en-cours", "gainTemps": 75, "risque": "Moyen", "outils": ["CodeRabbit", "Copilot", "SonarQube AI"], "detail": "L'IA détecte les bugs et failles de sécurité. Le dev valide et décide.", "reglementation": "Sécurité applicative — OWASP" },
+        { "nom": "Refactoring de code legacy", "statut": "en-cours", "gainTemps": 60, "risque": "Élevé", "outils": ["Claude", "ChatGPT", "Copilot"], "detail": "L'IA propose des refactorisations. Risque de régression — tests obligatoires.", "reglementation": "Responsabilité sur la stabilité du système" },
+        { "nom": "Architecture système", "statut": "non-automatise", "gainTemps": 30, "risque": "Élevé", "outils": [], "detail": "Décision d'architecture = expertise humaine et vision long terme.", "reglementation": "Sécurité et conformité RGPD by design" },
+        { "nom": "Gestion des incidents critiques", "statut": "non-automatise", "gainTemps": 20, "risque": "Très élevé", "outils": [], "detail": "Diagnostic en situation de crise = expérience et connaissance du système humaine.", "reglementation": "SLA — responsabilité contractuelle" }
+      ]
+    },
+
+    {
+      "id": "data-analyst",
+      "nom": "Data Analyst / Scientist",
+      "famille": "IT",
+      "couleur": "#0891B2",
+      "x": -0.1, "y": 0.2,
+      "scoreIA": 86, "risque": "Faible", "maturite": 4,
+      "description": "Analyse de données, modèles prédictifs, visualisation et aide à la décision data.",
+      "taches": [
+        { "nom": "Génération de code Python / SQL", "statut": "automatisable", "gainTemps": 80, "risque": "Moyen", "outils": ["ChatGPT", "Claude", "GitHub Copilot"], "detail": "Génération de requêtes et de scripts d'analyse. Revue humaine nécessaire.", "reglementation": "Gouvernance des données — qualité obligatoire" },
+        { "nom": "Rédaction des insights (langage naturel)", "statut": "automatisable", "gainTemps": 82, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Tableau AI"], "detail": "L'IA transforme les données brutes en narratifs compréhensibles.", "reglementation": "Données agrégées — RGPD si données personnelles" },
+        { "nom": "Création de dashboards", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["PowerBI Copilot", "Tableau AI", "Looker"], "detail": "L'IA suggère automatiquement les visualisations adaptées aux données.", "reglementation": "Confidentialité des données business" },
+        { "nom": "Exploration et nettoyage de données", "statut": "en-cours", "gainTemps": 70, "risque": "Moyen", "outils": ["ChatGPT", "Claude", "OpenRefine AI"], "detail": "L'IA identifie les anomalies et suggère les traitements.", "reglementation": "Gouvernance des données — traçabilité" },
+        { "nom": "Modèles de machine learning", "statut": "en-cours", "gainTemps": 60, "risque": "Élevé", "outils": ["AutoML", "ChatGPT", "Claude"], "detail": "L'IA automatise la sélection de features. Interprétabilité à surveiller.", "reglementation": "EU AI Act — transparence des modèles décisionnels" },
+        { "nom": "Définition de la stratégie data", "statut": "non-automatise", "gainTemps": 25, "risque": "Moyen", "outils": [], "detail": "Alignement data/business = vision humaine et connaissance du contexte.", "reglementation": "Gouvernance des données de l'entreprise" }
+      ]
+    },
+
+    {
+      "id": "juriste",
+      "nom": "Juriste d'entreprise",
+      "famille": "Juridique",
+      "couleur": "#7C3AED",
+      "x": -0.35, "y": 0.35,
+      "scoreIA": 70, "risque": "Élevé", "maturite": 2,
+      "description": "Rédaction et analyse de contrats, veille réglementaire, contentieux et conseil juridique.",
+      "taches": [
+        { "nom": "Veille juridique et réglementaire", "statut": "automatisable", "gainTemps": 88, "risque": "Faible", "outils": ["Harvey AI", "ChatGPT", "Doctrine"], "detail": "Surveillance automatique des évolutions législatives et jurisprudentielles.", "reglementation": "Vérification obligatoire par un juriste" },
+        { "nom": "Extraction de données contractuelles", "statut": "automatisable", "gainTemps": 82, "risque": "Moyen", "outils": ["Luminance", "Kira", "ChatGPT"], "detail": "Analyse automatique de grands volumes de contrats pour en extraire les clauses clés.", "reglementation": "Confidentialité des contrats" },
+        { "nom": "Rédaction de clauses standards", "statut": "automatisable", "gainTemps": 75, "risque": "Élevé", "outils": ["Harvey AI", "Luminance", "ChatGPT"], "detail": "Génération de clauses types. Personnalisation et validation experte indispensables.", "reglementation": "Responsabilité professionnelle engagée" },
+        { "nom": "Analyse de conformité réglementaire", "statut": "en-cours", "gainTemps": 65, "risque": "Élevé", "outils": ["Harvey AI", "ChatGPT", "Copilot"], "detail": "L'IA identifie les risques de non-conformité. Validation experte obligatoire.", "reglementation": "Responsabilité juridique de l'entreprise" },
+        { "nom": "Rédaction de contrats complexes", "statut": "non-automatise", "gainTemps": 25, "risque": "Très élevé", "outils": [], "detail": "Contrats stratégiques = expertise humaine et responsabilité professionnelle.", "reglementation": "Secret professionnel · Responsabilité du juriste" },
+        { "nom": "Gestion du contentieux", "statut": "non-automatise", "gainTemps": 20, "risque": "Très élevé", "outils": [], "detail": "Stratégie de défense et représentation = compétence humaine exclusive.", "reglementation": "Procédure judiciaire — représentation légale" }
+      ]
+    },
+
+    {
+      "id": "supply-chain",
+      "nom": "Responsable Supply Chain",
+      "famille": "Opérations",
+      "couleur": "#059669",
+      "x": 0.05, "y": -0.25,
+      "scoreIA": 80, "risque": "Faible", "maturite": 2,
+      "description": "Gestion des approvisionnements, prévisions de demande, logistique et optimisation des stocks.",
+      "taches": [
+        { "nom": "Prévisions de demande (ML)", "statut": "automatisable", "gainTemps": 82, "risque": "Faible", "outils": ["SAP AI", "o9 Solutions", "Llamasoft"], "detail": "Modèles ML intégrant saisonnalité, promotions et tendances marché.", "reglementation": "Données historiques — propriété de l'entreprise" },
+        { "nom": "Optimisation des niveaux de stock", "statut": "automatisable", "gainTemps": 78, "risque": "Faible", "outils": ["SAP AI", "Generix", "Copilot"], "detail": "Calcul automatique des niveaux de réapprovisionnement et des stocks de sécurité.", "reglementation": "Pas de contrainte réglementaire spécifique" },
+        { "nom": "Suivi et tracking des livraisons", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["Shippingbo", "Copilot", "ChatGPT"], "detail": "Alertes automatiques sur les retards, recalcul des dates de livraison.", "reglementation": "Engagements contractuels fournisseurs" },
+        { "nom": "Scoring et qualification fournisseurs", "statut": "en-cours", "gainTemps": 68, "risque": "Moyen", "outils": ["Ivalua AI", "SAP Ariba AI", "ChatGPT"], "detail": "L'IA évalue la fiabilité des fournisseurs sur la base de multiples critères.", "reglementation": "Loi Sapin 2 — devoir de vigilance" },
+        { "nom": "Optimisation des routes logistiques", "statut": "en-cours", "gainTemps": 72, "risque": "Faible", "outils": ["Routific", "Circuit", "SAP TM AI"], "detail": "Calcul automatique des tournées optimales en temps réel.", "reglementation": "Réglementation transport applicable" },
+        { "nom": "Gestion des crises fournisseurs", "statut": "non-automatise", "gainTemps": 20, "risque": "Élevé", "outils": [], "detail": "Décision stratégique en situation d'urgence = jugement humain critique.", "reglementation": "Continuité d'activité — obligations contractuelles" }
+      ]
+    },
+
+    {
+      "id": "acheteur",
+      "nom": "Acheteur / Responsable Achats",
+      "famille": "Opérations",
+      "couleur": "#059669",
+      "x": 0.15, "y": 0.05,
+      "scoreIA": 78, "risque": "Faible", "maturite": 2,
+      "description": "Sourcing fournisseurs, appels d'offres, négociation des contrats et gestion du panel.",
+      "taches": [
+        { "nom": "Analyse comparative de devis", "statut": "automatisable", "gainTemps": 78, "risque": "Faible", "outils": ["Ivalua AI", "Coupa", "ChatGPT"], "detail": "L'IA structure et compare automatiquement les offres fournisseurs.", "reglementation": "Égalité de traitement des fournisseurs" },
+        { "nom": "Veille prix et marché fournisseurs", "statut": "automatisable", "gainTemps": 82, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Perplexity"], "detail": "Surveillance automatique des cours matières, indices et actualités fournisseurs.", "reglementation": "Pas de contrainte réglementaire spécifique" },
+        { "nom": "Rédaction de cahiers des charges", "statut": "en-cours", "gainTemps": 68, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Notion AI"], "detail": "L'IA aide à structurer et rédiger les spécifications techniques.", "reglementation": "Confidentialité des besoins internes" },
+        { "nom": "Scoring et évaluation fournisseurs", "statut": "en-cours", "gainTemps": 72, "risque": "Moyen", "outils": ["Ivalua AI", "SAP Ariba", "ChatGPT"], "detail": "Notation automatique sur la base de critères qualité, délai, prix, RSE.", "reglementation": "Loi Sapin 2 — devoir de vigilance" },
+        { "nom": "Négociation et contractualisation", "statut": "non-automatise", "gainTemps": 20, "risque": "Moyen", "outils": [], "detail": "La négociation reste une compétence humaine centrale dans les achats.", "reglementation": "Droit commercial — responsabilité contractuelle" }
+      ]
+    },
+
+    {
+      "id": "charge-communication",
+      "nom": "Chargé(e) de Communication",
+      "famille": "Marketing",
+      "couleur": "#D97706",
+      "x": -0.15, "y": 0.65,
+      "scoreIA": 72, "risque": "Faible", "maturite": 2,
+      "description": "Communication interne et externe, relations presse, image de marque et événementiel.",
+      "taches": [
+        { "nom": "Rédaction de communiqués de presse", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Cision"], "detail": "Génération de drafts structurés à partir des faits clés. Vérification et validation obligatoires.", "reglementation": "Responsabilité de l'image de marque" },
+        { "nom": "Veille et revue de presse", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["Cision", "Talkwalker", "ChatGPT"], "detail": "Agrégation automatique des mentions presse, résumés quotidiens.", "reglementation": "Droits de reproduction des articles" },
+        { "nom": "Rédaction de contenus internes (newsletter)", "statut": "automatisable", "gainTemps": 78, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Notion AI"], "detail": "Génération assistée des newsletters et communications internes.", "reglementation": "Droit du travail — communication aux salariés" },
+        { "nom": "Aide à la rédaction de discours", "statut": "en-cours", "gainTemps": 60, "risque": "Faible", "outils": ["ChatGPT", "Copilot"], "detail": "L'IA propose une trame et des formulations. Le dirigeant personnalise.", "reglementation": "Authenticité des prises de parole" },
+        { "nom": "Stratégie de communication corporate", "statut": "non-automatise", "gainTemps": 20, "risque": "Moyen", "outils": [], "detail": "Positionnement et messages clés = vision humaine et connaissance de l'entreprise.", "reglementation": "Responsabilité de l'image de marque" },
+        { "nom": "Gestion de crise médiatique", "statut": "non-automatise", "gainTemps": 10, "risque": "Très élevé", "outils": [], "detail": "Réactivité, jugement et relation presse = compétences humaines irremplaçables.", "reglementation": "Responsabilité de l'entreprise engagée" }
+      ]
+    },
+
+    {
+      "id": "responsable-qualite",
+      "nom": "Responsable Qualité",
+      "famille": "Opérations",
+      "couleur": "#059669",
+      "x": 0.0, "y": -0.1,
+      "scoreIA": 76, "risque": "Faible", "maturite": 2,
+      "description": "Systèmes qualité, audits internes, non-conformités, certifications ISO et amélioration continue.",
+      "taches": [
+        { "nom": "Détection automatique de non-conformités", "statut": "automatisable", "gainTemps": 80, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Qualio"], "detail": "L'IA analyse les données de production pour détecter les écarts qualité en temps réel.", "reglementation": "Normes ISO applicables" },
+        { "nom": "Rédaction de procédures et modes opératoires", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Notion AI"], "detail": "Génération assistée de la documentation qualité. Validation par les experts.", "reglementation": "Exigences ISO 9001 / IATF / BRC selon secteur" },
+        { "nom": "Génération de rapports d'audits", "statut": "automatisable", "gainTemps": 72, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "IsoTracker AI"], "detail": "Mise en forme automatique des constats d'audit et des plans d'action.", "reglementation": "Traçabilité des audits — conservation obligatoire" },
+        { "nom": "Analyse des causes racines (8D, AMDEC)", "statut": "en-cours", "gainTemps": 65, "risque": "Moyen", "outils": ["ChatGPT", "Copilot"], "detail": "L'IA propose des hypothèses de causes. Les experts valident et décident.", "reglementation": "Normes sectorielles (auto, aéro, pharma)" },
+        { "nom": "Audits internes et certifications", "statut": "non-automatise", "gainTemps": 25, "risque": "Élevé", "outils": [], "detail": "La conduite d'audit et l'évaluation de la conformité nécessitent un auditeur certifié.", "reglementation": "Exigences des organismes certificateurs" }
+      ]
+    },
+
+    {
+      "id": "responsable-it",
+      "nom": "DSI / Responsable IT",
+      "famille": "IT",
+      "couleur": "#0891B2",
+      "x": -0.5, "y": 0.7,
+      "scoreIA": 65, "risque": "Moyen", "maturite": 3,
+      "description": "Stratégie informatique, architecture SI, cybersécurité et pilotage de la transformation digitale.",
+      "taches": [
+        { "nom": "Veille technologique et benchmark", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Perplexity"], "detail": "Surveillance automatique des nouvelles technologies, solutions et tendances du marché.", "reglementation": "Pas de contrainte spécifique" },
+        { "nom": "Rédaction de cahiers des charges SI", "statut": "en-cours", "gainTemps": 72, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Cursor"], "detail": "L'IA aide à structurer les spécifications fonctionnelles et techniques.", "reglementation": "Confidentialité de l'architecture SI" },
+        { "nom": "Analyse des risques de cybersécurité", "statut": "en-cours", "gainTemps": 65, "risque": "Élevé", "outils": ["Microsoft Sentinel AI", "Copilot", "ChatGPT"], "detail": "L'IA identifie les vulnérabilités. L'expert valide et définit les contre-mesures.", "reglementation": "NIS2 — obligation de sécurité renforcée" },
+        { "nom": "Stratégie SI et architecture cible", "statut": "non-automatise", "gainTemps": 20, "risque": "Élevé", "outils": [], "detail": "Choix d'architecture = expertise humaine et vision à long terme engageant l'entreprise.", "reglementation": "Sécurité et conformité RGPD by design" },
+        { "nom": "Gouvernance de l'IA en entreprise", "statut": "non-automatise", "gainTemps": 15, "risque": "Élevé", "outils": [], "detail": "Position unique : doit adopter ET gouverner l'IA simultanément — décision humaine.", "reglementation": "EU AI Act — responsabilité du déployeur d'IA" }
+      ]
+    },
+
+    {
+      "id": "directeur-general",
+      "nom": "Directeur Général / PDG",
+      "famille": "Direction",
+      "couleur": "#92400E",
+      "x": -0.82, "y": 0.9,
+      "scoreIA": 45, "risque": "Faible", "maturite": 2,
+      "description": "Vision stratégique, gouvernance d'entreprise et relations avec les parties prenantes.",
+      "taches": [
+        { "nom": "Veille stratégique et concurrentielle", "statut": "automatisable", "gainTemps": 70, "risque": "Faible", "outils": ["ChatGPT", "Perplexity", "Copilot"], "detail": "Synthèse automatique des actualités sectorielles, concurrentes et réglementaires.", "reglementation": "Confidentialité des analyses stratégiques" },
+        { "nom": "Synthèse exécutive de rapports", "statut": "automatisable", "gainTemps": 65, "risque": "Faible", "outils": ["ChatGPT", "Claude", "Copilot"], "detail": "L'IA condense les rapports longs en synthèses actionnables.", "reglementation": "Confidentialité stratégique extrême" },
+        { "nom": "Préparation des présentations CODIR / CA", "statut": "en-cours", "gainTemps": 60, "risque": "Faible", "outils": ["Copilot", "ChatGPT", "PowerPoint AI"], "detail": "L'IA propose une structure et des slides. Le DG personnalise et valide.", "reglementation": "Confidentialité des données financières" },
+        { "nom": "Décisions stratégiques d'entreprise", "statut": "non-automatise", "gainTemps": 10, "risque": "Très élevé", "outils": [], "detail": "Vision, arbitrage stratégique et responsabilité dirigeante — irréductiblement humains.", "reglementation": "Responsabilité légale du dirigeant" },
+        { "nom": "Leadership et culture d'entreprise", "statut": "non-automatise", "gainTemps": 5, "risque": "Très élevé", "outils": [], "detail": "Incarner la vision, motiver les équipes = dimension humaine fondamentale.", "reglementation": "Responsabilité managériale" }
+      ]
+    },
+
+    {
+      "id": "chef-projet",
+      "nom": "Chef de Projet",
+      "famille": "Transverse",
+      "couleur": "#BE185D",
+      "x": 0.1, "y": 0.55,
+      "scoreIA": 73, "risque": "Faible", "maturite": 2,
+      "description": "Planification, coordination des équipes, suivi des délais et livraison des projets.",
+      "taches": [
+        { "nom": "Rédaction des comptes-rendus de réunion", "statut": "automatisable", "gainTemps": 80, "risque": "Faible", "outils": ["Otter.ai", "Fireflies", "Copilot"], "detail": "Transcription + extraction automatique des décisions et actions à mener.", "reglementation": "Consentement des participants à l'enregistrement" },
+        { "nom": "Génération du planning projet (Gantt)", "statut": "automatisable", "gainTemps": 70, "risque": "Faible", "outils": ["Monday AI", "Asana AI", "Copilot"], "detail": "L'IA propose un séquençage optimal des tâches à partir du brief projet.", "reglementation": "Pas de contrainte spécifique" },
+        { "nom": "Rédaction des rapports d'avancement", "statut": "automatisable", "gainTemps": 75, "risque": "Faible", "outils": ["ChatGPT", "Copilot", "Notion AI"], "detail": "Génération automatique des rapports hebdomadaires à partir du suivi des tâches.", "reglementation": "Confidentialité projet client" },
+        { "nom": "Analyse et anticipation des risques projet", "statut": "en-cours", "gainTemps": 60, "risque": "Moyen", "outils": ["ChatGPT", "Copilot", "Monday AI"], "detail": "L'IA identifie les risques à partir de l'historique de projets similaires.", "reglementation": "Responsabilité contractuelle client" },
+        { "nom": "Coordination et arbitrage entre équipes", "statut": "non-automatise", "gainTemps": 20, "risque": "Moyen", "outils": [], "detail": "Gestion des conflits de priorités et des dépendances = intelligence sociale irremplaçable.", "reglementation": "Responsabilité du chef de projet" },
+        { "nom": "Relation client et gestion des attentes", "statut": "non-automatise", "gainTemps": 15, "risque": "Élevé", "outils": [], "detail": "Confiance et communication de crise avec le client = compétence humaine centrale.", "reglementation": "Engagements contractuels" }
+      ]
+    },
+
+    {
+      "id": "responsable-formation",
+      "nom": "Responsable Formation",
+      "famille": "RH",
+      "couleur": "#059669",
+      "x": -0.2, "y": 0.1,
+      "scoreIA": 72, "risque": "Faible", "maturite": 2,
+      "description": "Ingénierie pédagogique, plan de développement des compétences, OPCO et e-learning.",
+      "taches": [
+        { "nom": "Création de contenus e-learning", "statut": "automatisable", "gainTemps": 80, "risque": "Faible", "outils": ["ChatGPT", "Notion AI", "360Learning"], "detail": "Génération de modules pédagogiques, quiz et supports de formation.", "reglementation": "Propriété intellectuelle des contenus" },
+        { "nom": "Veille réglementaire formation", "statut": "automatisable", "gainTemps": 85, "risque": "Faible", "outils": ["ChatGPT", "Copilot"], "detail": "Surveillance automatique des évolutions légales (CPF, OPCO, certifications).", "reglementation": "Code du travail — obligations de formation" },
+        { "nom": "Analyse des besoins en compétences", "statut": "en-cours", "gainTemps": 68, "risque": "Moyen", "outils": ["ChatGPT", "Copilot", "Workday"], "detail": "L'IA croise les évaluations et les objectifs stratégiques pour identifier les gaps.", "reglementation": "RGPD — données d'évaluation des salariés" },
+        { "nom": "Personnalisation des parcours de formation", "statut": "en-cours", "gainTemps": 65, "risque": "Faible", "outils": ["360Learning AI", "Docebo AI", "Copilot"], "detail": "L'IA recommande des formations adaptées au profil et au poste de chaque salarié.", "reglementation": "Accord du salarié sur l'utilisation de ses données" },
+        { "nom": "Animation et facilitation des formations", "statut": "non-automatise", "gainTemps": 15, "risque": "Moyen", "outils": [], "detail": "La relation pédagogique et l'adaptation au groupe = compétence humaine fondamentale.", "reglementation": "Qualité des formateurs (Qualiopi)" }
+      ]
+    }
+
+  ]
+}

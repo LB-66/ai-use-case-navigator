@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartographie IA × Métiers</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <link rel="stylesheet" href="carto.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav id="topnav">
+    <a href="index.html" id="nav-home">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Outil principal
+    </a>
+    <div id="nav-breadcrumb">
+      <span id="bc-map" class="bc-active">Vue d'ensemble</span>
+      <span id="bc-sep" class="bc-sep hidden">›</span>
+      <span id="bc-metier" class="hidden"></span>
+    </div>
+    <div id="nav-right">
+      <span id="nav-hint">Cliquer sur un métier pour explorer ses tâches →</span>
+    </div>
+  </nav>
+
+  <!-- ═══ VUE 1 : BUBBLE MAP ═══ -->
+  <div id="view-map">
+
+    <div id="map-header">
+      <div>
+        <h1>Cartographie <span class="accent">IA × Métiers</span></h1>
+        <p class="subtitle">Positionnement de <strong id="nb-metiers">0</strong> métiers selon leur potentiel d'adoption IA</p>
+      </div>
+      <div id="map-filters">
+        <button class="fam-btn active" data-fam="all">Tous</button>
+      </div>
+      <div id="map-legend">
+        <div class="leg-item"><span class="leg-dot" style="background:#00C896"></span>Fort bénéfice ≥75%</div>
+        <div class="leg-item"><span class="leg-dot" style="background:#F5A623"></span>Moyen 55–74%</div>
+        <div class="leg-item"><span class="leg-dot" style="background:#E8415A"></span>Ciblé &lt;55%</div>
+        <div class="leg-sep"></div>
+        <div class="leg-item gray">Taille = potentiel de gain temps</div>
+      </div>
+    </div>
+
+    <div id="map-wrap">
+      <!-- Axes labels -->
+      <div class="ax-label ax-top">
+        <span class="ax-arrow" style="color:#F5A623">↑</span>
+        <span style="color:#F5A623">Tâches créatives &amp; relationnelles</span>
+      </div>
+      <div class="ax-label ax-bottom">
+        <span style="color:#00C896">Tâches répétitives &amp; structurées</span>
+        <span class="ax-arrow" style="color:#00C896">↓</span>
+      </div>
+      <div class="ax-label ax-left">
+        <span class="ax-vert" style="color:#9B5DE5">← Spécialiste métier</span>
+      </div>
+      <div class="ax-label ax-right">
+        <span class="ax-vert" style="color:#2979FF">Généraliste / Transversal →</span>
+      </div>
+      <svg id="map-svg"></svg>
+    </div>
+
+  </div>
+
+  <!-- ═══ VUE 2 : TÂCHES DU MÉTIER ═══ -->
+  <div id="view-tasks" class="hidden">
+
+    <div id="tasks-header">
+      <button id="btn-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Retour carte
+      </button>
+      <div id="tasks-meta">
+        <div id="tasks-tag"></div>
+        <h2 id="tasks-title"></h2>
+        <p id="tasks-desc"></p>
+      </div>
+      <div id="tasks-scores">
+        <div class="score-chip">
+          <div class="sc-val" id="sc-ia"></div>
+          <div class="sc-lbl">Bénéfice IA</div>
+        </div>
+        <div class="score-chip">
+          <div class="sc-val" id="sc-mat"></div>
+          <div class="sc-lbl">Maturité /5</div>
+        </div>
+        <div class="score-chip">
+          <div class="sc-val" id="sc-risk"></div>
+          <div class="sc-lbl">Risque global</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 colonnes de tâches -->
+    <div id="tasks-columns">
+
+      <div class="tasks-col" id="col-auto">
+        <div class="col-head col-head-auto">
+          <div class="col-icon">✅</div>
+          <div>
+            <div class="col-title">Déjà automatisable</div>
+            <div class="col-sub">Déploiement recommandé maintenant</div>
+          </div>
+          <div class="col-count" id="cnt-auto">0</div>
+        </div>
+        <div class="col-cards" id="cards-auto"></div>
+      </div>
+
+      <div class="tasks-col" id="col-enc">
+        <div class="col-head col-head-enc">
+          <div class="col-icon">⚡</div>
+          <div>
+            <div class="col-title">En cours d'adoption</div>
+            <div class="col-sub">Expérimentation recommandée</div>
+          </div>
+          <div class="col-count" id="cnt-enc">0</div>
+        </div>
+        <div class="col-cards" id="cards-enc"></div>
+      </div>
+
+      <div class="tasks-col" id="col-hum">
+        <div class="col-head col-head-hum">
+          <div class="col-icon">🤝</div>
+          <div>
+            <div class="col-title">Restera humain</div>
+            <div class="col-sub">Compétence irremplaçable</div>
+          </div>
+          <div class="col-count" id="cnt-hum">0</div>
+        </div>
+        <div class="col-cards" id="cards-hum"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ═══ TOOLTIP ═══ -->
+  <div id="carto-tooltip"></div>
+
+  <script src="carto.js"></script>
+</body>
+</html>
